@@ -1,0 +1,23 @@
+{
+  "name": "onedriveuploader",
+  "version": "1.0.0",
+  "description": "File Uploader To OneDrive From Command Line",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "IT2SGROUP",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/identity": "^1.5.0",
+    "@azure/msal-node": "^1.3.0",
+    "@microsoft/microsoft-graph-client": "^2.2.1",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "isomorphic-fetch": "^3.0.0",
+    "mime": "^2.5.2"
+  },
+  "devDependencies": {
+    "@microsoft/microsoft-graph-types": "^2.1.0"
+  }
+}
