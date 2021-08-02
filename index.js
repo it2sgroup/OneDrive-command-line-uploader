@@ -6,14 +6,11 @@ const fs = require("fs")
 const pathHandler = require('path')
 const mime = require('mime')
 
-/*
-Team ID: bfae7394-ff46-465e-b7ec-1d845626e2b8
-*/
 
 
 async function main() {
     if (process.argv.indexOf("--help") != -1) {
-
+            showHelp()
     } else {
         if (process.argv.indexOf("--file") != -1 && process.argv.indexOf("--groupId") != -1 && process.argv.indexOf("--endpoint") != -1 && process.argv.indexOf("--subPath") != -1) {
 

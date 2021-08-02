@@ -4,7 +4,7 @@
   "description": "File Uploader To OneDrive From Command Line",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "upload": "node index.js"
   },
   "author": "IT2SGROUP",
   "license": "ISC",
