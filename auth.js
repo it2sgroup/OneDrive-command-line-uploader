@@ -1,6 +1,5 @@
 const msal = require('@azure/msal-node');
 
-
 const msalConfig = {
 	auth: {
 		clientId: process.env.CLIENT_ID,
@@ -33,3 +32,5 @@ module.exports = {
 	tokenRequest: tokenRequest,
 	getToken: getToken
 };
+
+/*Code Obtained from Microsoft Azure Authentication Examples*/

@@ -19,7 +19,6 @@ async function callApi(endpoint, accessToken) {
         const response = await axios.default.get(endpoint, options);
         return response;
     } catch (error) {
-        /*console.log(error)*/
         return error;
     }
 };
@@ -37,7 +36,6 @@ async function postApi(endpoint, accessToken, data){
         const response = await axios.default.post(endpoint, data, options);
         return response;
     } catch (error) {
-        /*console.log(error)*/
         return error;
     }
 }
@@ -56,7 +54,6 @@ async function putApi(endpoint, accessToken, data, content){
         const response = await axios.default.put(endpoint, data, options);
         return response;
     } catch (error) {
-        /*console.log(error)*/
         return error;
     }
 }

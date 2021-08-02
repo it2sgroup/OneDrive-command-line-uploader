@@ -150,12 +150,6 @@ function showHelp(){
     `)
 }
 
-function mountFilePathToSave(names) {
-    var path = "";
-    names.forEach(function (el, i, arr) {
-        path += `/${el}/children`
-    })
-    return path
-}
+
 
 main()
