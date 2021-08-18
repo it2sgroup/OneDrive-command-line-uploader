@@ -100,3 +100,23 @@ Client: 5a6c1622-0476-4bfb-804c-e43f585b0d1a
 /*
 Team ID: bfae7394-ff46-465e-b7ec-1d845626e2b8
 */
+
+/*Test command:
+https://teams.microsoft.com/l/team/19%3a5ea7a4774126428c8e972137bc43c2d3%40thread.skype/conversations?groupId=44d0302f-d137-4793-b14e-55e6f93481e3&tenantId=1afd3317-0934-4c2a-ba5d-1ba6a869aa64
+
+groupId = 44d0302f-d137-4793-b14e-55e6f93481e3
+file = testfiles/modos.pdf
+endpoint = 1.0/groups/
+subPath = Red Team/Assessments
+https://teams.microsoft.com/l/team/19%3aIDzQYP61C1xS5QOzY9V0IwPAnNfIycFoC3N_VJkEeHk1%40thread.tacv2/conversations?groupId=dcd49d0e-eb48-4c0d-97fd-39153aab97b6&tenantId=1afd3317-0934-4c2a-ba5d-1ba6a869aa64
+
+node index.js --groupId 44d0302f-d137-4793-b14e-55e6f93481e3 --file testfiles/modos.pdf --endpoint v1.0/groups/ --subPath "Red Team/Assessments"
+
+node index.js --groupId dcd49d0e-eb48-4c0d-97fd-39153aab97b6 --file testfiles/modos.pdf --endpoint v1.0/groups/ --subPath "Red Team/Assessments"
+
+
+Git toke: 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
+
+
+
+*/

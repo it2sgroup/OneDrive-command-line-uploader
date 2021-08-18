@@ -17,7 +17,7 @@ async function main() {
             const file = process.argv[process.argv.indexOf("--file") + 1]
             const groupId = process.argv[process.argv.indexOf("--groupId") + 1]
             const endpoint = process.argv[process.argv.indexOf("--endpoint") + 1]
-            const subPath = process.argv[process.argv.indexOf("--endpoint") + 1]
+            const subPath = process.argv[process.argv.indexOf("--subPath") + 1]
             if(subPath == 'root'){
                 subPath = "/"
             }
@@ -29,8 +29,7 @@ async function main() {
             const folderDate = await checkDateFolder(auth, fetch, groupId, date, subPath, endpoint)
             if (folderDate) {
                 const upload = await uploadFile(path, file, auth, fetch, groupId, subPath, endpoint)
-                if(up)
-                console.log("The upload was a success")
+                
             } else {
                 console.log("Error While Creating Subfolders")
             }
@@ -62,7 +61,7 @@ async function checkDateFolder(auth, fetch, groupId, date, subPath, endpoint) {
     }
     if (typeof monthExist.response != "undefined") {
         if (monthExist.response.status == 404) {
-            const resp = await createFolder(`${subPath}${year}/`, `${month}`, auth, fetch, groupId, endpoint)
+            const resp = await createFolder(`${subPath}/${year}/`, `${month}`, auth, fetch, groupId, endpoint)
             if (resp.status != 201) {
                 return false
             }
@@ -70,7 +69,7 @@ async function checkDateFolder(auth, fetch, groupId, date, subPath, endpoint) {
     }
     if (typeof dayExist.response != "undefined") {
         if (dayExist.response.status == 404) {
-            const resp = await createFolder(`${subPath}${year}/${month}/`, `${day}`, auth, fetch, groupId, endpoint)
+            const resp = await createFolder(`${subPath}/${year}/${month}/`, `${day}`, auth, fetch, groupId, endpoint)
             if (resp.status != 201) {
                 return false
             }
@@ -86,7 +85,7 @@ async function checkIfFolderExist(path, auth, fetch, groupId, subPath, endpoint)
         // Request AccessToken to msal-node in auth.js
         const authResponse = await auth.getToken(auth.tokenRequest)
         // Object Data Post to create new folder
-        const checkFolder = await fetch.callApi(process.env.GRAPH_ENDPOINT + `${endpoint}${groupId}/drive/root:${subPath}${path}`, authResponse.accessToken)
+        const checkFolder = await fetch.callApi(process.env.GRAPH_ENDPOINT + `${endpoint}${groupId}/drive/root:/${subPath}${path}`, authResponse.accessToken)
         console.log("check Folder Request: ", checkFolder)
         return checkFolder
     } catch (error) {
@@ -111,6 +110,7 @@ async function createFolder(path, folder, auth, fetch, groupId, endpoint) {
         // Post Request to Create Folder using GraphAPI~  GET /groups/{group-id}/drive/root:/{item-path}
         // /groups/{group-id}/drive/items/{parent-item-id}/children
         const getItemId = await fetch.callApi(process.env.GRAPH_ENDPOINT + `${endpoint}${groupId}/drive/root:/${path}`, authResponse.accessToken)
+        console.log(getItemId)
         const parentId = getItemId.data.id
         const createFolderRequest = await fetch.postApi(process.env.GRAPH_ENDPOINT + `${endpoint}${groupId}/drive/items/${parentId}/children/`, authResponse.accessToken, driveItem)
         console.log("Create folder request:", createFolderRequest)
@@ -128,7 +128,7 @@ async function uploadFile(path, file, auth, fetch, groupId, subPath, endpoint) {
         fs.readFile(file, async function read(e, f) {
             var contentType = mime.getType(file)
             const filename = pathHandler.basename(file)
-            const createFileRequest = await fetch.putApi(process.env.GRAPH_ENDPOINT + `${endpoint}${groupId}/drive/root:${subPath}${path}/${filename}:/content`, authResponse.accessToken, f, contentType)
+            const createFileRequest = await fetch.putApi(process.env.GRAPH_ENDPOINT + `${endpoint}${groupId}/drive/root:/${subPath}${path}/${filename}:/content`, authResponse.accessToken, f, contentType)
             console.log("Create file request:", createFileRequest)
             return createFileRequest
         })
